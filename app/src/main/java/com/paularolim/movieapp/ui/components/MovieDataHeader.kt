@@ -18,10 +18,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
 import com.paularolim.movieapp.R
+import com.paularolim.movieapp.models.Movie
 
 @Composable
-fun MovieDataHeader(modifier: Modifier = Modifier) {
+fun MovieDataHeader(modifier: Modifier = Modifier, movie: Movie) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .background(
@@ -35,7 +37,7 @@ fun MovieDataHeader(modifier: Modifier = Modifier) {
         .composed { modifier }) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
-                painter = painterResource(id = R.drawable.sampleposter),
+                painter = rememberAsyncImagePainter(movie.posterImage),
                 contentDescription = "Movie poster",
                 modifier = Modifier
                     .width(100.dp)
@@ -44,7 +46,7 @@ fun MovieDataHeader(modifier: Modifier = Modifier) {
 
             Column(modifier = Modifier.padding(start = 12.dp)) {
                 Text(
-                    text = "Movie name",
+                    text = movie.title,
                     fontSize = 24.sp,
                     lineHeight = 32.sp,
                     fontWeight = FontWeight(700)
@@ -67,7 +69,7 @@ fun MovieDataHeader(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "Puss in Boots discovers that his passion for adventure has taken its toll: He has burned through eight of his nine lives, leaving him with only one life left. Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives.",
+            text = movie.overview,
             fontSize = 16.sp,
             lineHeight = 24.sp,
             fontWeight = FontWeight(300)
@@ -78,5 +80,11 @@ fun MovieDataHeader(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun MovieDataHeaderPreview() {
-    MovieDataHeader()
+    val movie = Movie(
+        title = "Movie title",
+        backdropImage = "https://image.tmdb.org/t/p/original/kuf6dutpsT0vSVehic3EZIqkOBt.jpg",
+        posterImage = "https://image.tmdb.org/t/p/original/kuf6dutpsT0vSVehic3EZIqkOBt.jpg",
+        overview = "Lorem ipsum."
+    )
+    MovieDataHeader(movie = movie)
 }
