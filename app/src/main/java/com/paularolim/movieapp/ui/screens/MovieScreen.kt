@@ -15,7 +15,7 @@ import com.paularolim.movieapp.ui.components.MovieDataHeader
 import com.paularolim.movieapp.ui.components.MovieHeader
 
 @Composable
-fun MovieScreen() {
+fun MovieScreen(id: String, openDrawer: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -27,7 +27,7 @@ fun MovieScreen() {
                 contentDescription = "Backdrop movie",
                 contentScale = ContentScale.FillWidth
             )
-            MovieHeader()
+            MovieHeader(openDrawer = { openDrawer() })
         }
         Column(modifier = Modifier.offset(y = -(75.dp))) {
             MovieDataHeader(modifier = Modifier.padding(horizontal = 24.dp))
@@ -38,5 +38,6 @@ fun MovieScreen() {
 @Preview
 @Composable
 private fun MovieScreenPreview() {
-    MovieScreen()
+    fun openDrawer() {}
+    MovieScreen(id = "315162", openDrawer = ::openDrawer)
 }

@@ -1,6 +1,7 @@
 package com.paularolim.movieapp.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -17,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import com.paularolim.movieapp.R
 
 @Composable
-fun MovieHeader() {
+fun MovieHeader(openDrawer: () -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -36,7 +37,11 @@ fun MovieHeader() {
         Icon(
             painter = painterResource(R.drawable.ic_baseline_menu_24),
             contentDescription = "Menu icon",
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier
+                .size(24.dp)
+                .clickable {
+                    openDrawer()
+                }
         )
 
         Text(text = "Movie App", fontSize = 18.sp)
@@ -52,5 +57,6 @@ fun MovieHeader() {
 @Preview
 @Composable
 private fun MovieHeaderPreview() {
-    MovieHeader()
+    fun openDrawer() {}
+    MovieHeader(openDrawer = ::openDrawer)
 }
