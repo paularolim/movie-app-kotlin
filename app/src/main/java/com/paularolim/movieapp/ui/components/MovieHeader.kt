@@ -51,6 +51,6 @@ fun MovieHeader() {
 
 @Preview
 @Composable
-fun MovieHeaderPreview() {
+private fun MovieHeaderPreview() {
     MovieHeader()
 }
