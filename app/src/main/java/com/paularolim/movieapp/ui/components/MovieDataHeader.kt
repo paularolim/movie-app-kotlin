@@ -40,7 +40,7 @@ fun MovieDataHeader(modifier: Modifier = Modifier, movie: Movie) {
                 painter = rememberAsyncImagePainter(movie.posterImage),
                 contentDescription = "Movie poster",
                 modifier = Modifier
-                    .width(100.dp)
+                    .height(150.dp)
                     .clip(RoundedCornerShape(8.dp))
             )
 
