@@ -27,7 +27,7 @@ fun MovieHeader() {
                 Brush.verticalGradient(
                     listOf(
                         MaterialTheme.colors.background,
-                        Color(red = 0xFF, green = 0xFF, blue = 0xFF, alpha = 0x1A)
+                        Color(red = 0xFF, green = 0xFF, blue = 0xFF, alpha = 0x0)
                     )
                 )
             )
