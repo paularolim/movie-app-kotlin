@@ -1,5 +1,6 @@
 package com.paularolim.movieapp.ui.screens.movie
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -32,7 +33,8 @@ fun MovieScreen(
         title = movieResponse?.title ?: "N/A",
         backdropImage = "https://image.tmdb.org/t/p/original${movieResponse?.backdropImage}",
         posterImage = "https://image.tmdb.org/t/p/original${movieResponse?.posterImage}",
-        overview = movieResponse?.overview ?: "N/A"
+        overview = movieResponse?.overview ?: "N/A",
+        categories = movieResponse?.categories ?: listOf()
     )
 
     fun tryAgain() {

@@ -8,5 +8,7 @@ data class Movie(
     val backdropImage: String,
     @SerializedName("poster_path")
     val posterImage: String,
-    val overview: String
+    val overview: String,
+    @SerializedName("genres")
+    val categories: List<Category>
 )
