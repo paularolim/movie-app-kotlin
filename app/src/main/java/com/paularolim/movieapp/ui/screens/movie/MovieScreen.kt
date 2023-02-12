@@ -1,7 +1,6 @@
 package com.paularolim.movieapp.ui.screens.movie
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -38,7 +37,8 @@ fun MovieScreen(
         posterImage = "https://image.tmdb.org/t/p/original${movieResponse?.posterImage}",
         overview = movieResponse?.overview ?: "N/A",
         categories = movieResponse?.categories ?: listOf(),
-        releaseDate = movieResponse?.releaseDate ?: ""
+        releaseDate = movieResponse?.releaseDate ?: "",
+        duration = movieResponse?.duration ?: ""
     )
 
     fun tryAgain() {
@@ -70,6 +70,7 @@ fun MovieScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 private fun MovieScreenPreview() {

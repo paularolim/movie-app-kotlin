@@ -12,5 +12,7 @@ data class Movie(
     @SerializedName("genres")
     val categories: List<Category>,
     @SerializedName("release_date")
-    val releaseDate: String
+    val releaseDate: String,
+    @SerializedName("runtime")
+    val duration: String
 )

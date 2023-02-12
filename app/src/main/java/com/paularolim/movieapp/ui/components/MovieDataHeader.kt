@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.paularolim.movieapp.functions.formatDuration
 import com.paularolim.movieapp.functions.getYearFromDate
 import com.paularolim.movieapp.models.Category
 import com.paularolim.movieapp.models.Movie
@@ -34,6 +35,7 @@ fun MovieDataHeader(modifier: Modifier = Modifier, movie: Movie) {
         if (category1 != null && category2 != null) "${category1.name} / ${category2.name}" else ""
 
     val year = getYearFromDate(movie.releaseDate)
+    val duration = formatDuration(movie.duration)
 
     Column(modifier = Modifier
         .fillMaxWidth()
@@ -61,7 +63,7 @@ fun MovieDataHeader(modifier: Modifier = Modifier, movie: Movie) {
                     fontWeight = FontWeight(300)
                 )
                 Text(
-                    text = "$year - 2hrs",
+                    text = "$year - $duration",
                     fontSize = 16.sp,
                     lineHeight = 24.sp,
                     fontWeight = FontWeight(300)
@@ -90,7 +92,8 @@ private fun MovieDataHeaderPreview() {
         posterImage = "https://image.tmdb.org/t/p/original/kuf6dutpsT0vSVehic3EZIqkOBt.jpg",
         overview = "Lorem ipsum.",
         categories = listOf(Category("1", "Category 1"), Category("2", "Category 2")),
-        releaseDate = "2022-12-07"
+        releaseDate = "2022-12-07",
+        duration = "203"
     )
     MovieDataHeader(movie = movie)
 }
