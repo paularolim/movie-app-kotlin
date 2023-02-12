@@ -1,6 +1,8 @@
 package com.paularolim.movieapp.ui.screens.movie
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -19,6 +21,7 @@ import com.paularolim.movieapp.ui.components.MovieHeader
 import com.paularolim.movieapp.viewmodels.MovieViewModel
 import com.paularolim.movieapp.viewmodels.MovieViewModelFactory
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MovieScreen(
     id: String,
@@ -34,7 +37,8 @@ fun MovieScreen(
         backdropImage = "https://image.tmdb.org/t/p/original${movieResponse?.backdropImage}",
         posterImage = "https://image.tmdb.org/t/p/original${movieResponse?.posterImage}",
         overview = movieResponse?.overview ?: "N/A",
-        categories = movieResponse?.categories ?: listOf()
+        categories = movieResponse?.categories ?: listOf(),
+        releaseDate = movieResponse?.releaseDate ?: ""
     )
 
     fun tryAgain() {

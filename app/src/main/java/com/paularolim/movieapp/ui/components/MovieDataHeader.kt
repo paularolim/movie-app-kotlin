@@ -1,5 +1,7 @@
 package com.paularolim.movieapp.ui.components
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,9 +16,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.paularolim.movieapp.functions.getYearFromDate
 import com.paularolim.movieapp.models.Category
 import com.paularolim.movieapp.models.Movie
+import java.text.DateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MovieDataHeader(modifier: Modifier = Modifier, movie: Movie) {
     val category1: Category? =
@@ -25,6 +32,8 @@ fun MovieDataHeader(modifier: Modifier = Modifier, movie: Movie) {
         if (movie.categories.isNotEmpty() && movie.categories.getOrNull(1) != null) movie.categories[1] else null
     val category =
         if (category1 != null && category2 != null) "${category1.name} / ${category2.name}" else ""
+
+    val year = getYearFromDate(movie.releaseDate)
 
     Column(modifier = Modifier
         .fillMaxWidth()
@@ -52,7 +61,7 @@ fun MovieDataHeader(modifier: Modifier = Modifier, movie: Movie) {
                     fontWeight = FontWeight(300)
                 )
                 Text(
-                    text = "2022 - 2hrs",
+                    text = "$year - 2hrs",
                     fontSize = 16.sp,
                     lineHeight = 24.sp,
                     fontWeight = FontWeight(300)
@@ -71,6 +80,7 @@ fun MovieDataHeader(modifier: Modifier = Modifier, movie: Movie) {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 private fun MovieDataHeaderPreview() {
@@ -79,7 +89,8 @@ private fun MovieDataHeaderPreview() {
         backdropImage = "https://image.tmdb.org/t/p/original/kuf6dutpsT0vSVehic3EZIqkOBt.jpg",
         posterImage = "https://image.tmdb.org/t/p/original/kuf6dutpsT0vSVehic3EZIqkOBt.jpg",
         overview = "Lorem ipsum.",
-        categories = listOf(Category("1", "Category 1"), Category("2", "Category 2"))
+        categories = listOf(Category("1", "Category 1"), Category("2", "Category 2")),
+        releaseDate = "2022-12-07"
     )
     MovieDataHeader(movie = movie)
 }

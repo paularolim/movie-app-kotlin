@@ -10,5 +10,7 @@ data class Movie(
     val posterImage: String,
     val overview: String,
     @SerializedName("genres")
-    val categories: List<Category>
+    val categories: List<Category>,
+    @SerializedName("release_date")
+    val releaseDate: String
 )

@@ -1,5 +1,7 @@
 package com.paularolim.movieapp.ui.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material.DrawerValue
 import androidx.compose.material.ModalDrawer
 import androidx.compose.material.Surface
@@ -13,6 +15,7 @@ import com.paularolim.movieapp.ui.screens.HomeScreen
 import com.paularolim.movieapp.ui.screens.movie.MovieScreen
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppNavHost() {
     val navController = rememberNavController()
