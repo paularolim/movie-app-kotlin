@@ -1,25 +1,21 @@
-package com.paularolim.movieapp.ui.screens
+package com.paularolim.movieapp.ui.screens.movie
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.paularolim.movieapp.models.Movie
+import com.paularolim.movieapp.ui.components.MovieBackdrop
 import com.paularolim.movieapp.ui.components.MovieDataHeader
 import com.paularolim.movieapp.ui.components.MovieHeader
 import com.paularolim.movieapp.viewmodels.MovieViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.compose.rememberAsyncImagePainter
-import com.paularolim.movieapp.models.Movie
-import com.paularolim.movieapp.ui.components.MovieBackdrop
 import com.paularolim.movieapp.viewmodels.MovieViewModelFactory
 
 @Composable
@@ -39,14 +35,18 @@ fun MovieScreen(
         overview = movieResponse?.overview ?: "N/A"
     )
 
+    fun tryAgain() {
+        viewModel.fetchMovieDetails(id)
+    }
+
     LaunchedEffect(true) {
         viewModel.fetchMovieDetails(id)
     }
 
     if (loading == true) {
-        Text(text = "Loading...")
+        MovieLoading()
     } else if (error?.isNotBlank() == true && error?.isNotEmpty() == true) {
-        Text(text = "Something went wrong :(")
+        MovieError(tryAgain = { tryAgain() })
     } else {
         Column(
             modifier = Modifier

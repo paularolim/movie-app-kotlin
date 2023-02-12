@@ -26,15 +26,20 @@ class MovieViewModel : ViewModel() {
             _loading.postValue(true)
             _error.postValue("")
 
-            val response = service.getMovie(id = id)
+            try {
+                val response = service.getMovie(id = id)
 
-            if (response.isSuccessful) {
-                withContext(Dispatchers.Main) {
-                    _movie.postValue(response.body())
+                if (response.isSuccessful) {
+                    withContext(Dispatchers.Main) {
+                        _movie.postValue(response.body())
+                    }
+                } else {
+                    _error.postValue("Error on request")
+                    Log.e("MovieViewModel", "Error on request")
                 }
-            } else {
-                _error.postValue("Error on request")
-                Log.e("MovieViewModel", "Error on request")
+            } catch (requestException: Exception) {
+                _error.postValue(requestException.message.toString())
+                Log.e("MovieViewModel", requestException.message.toString())
             }
 
             _loading.postValue(false)

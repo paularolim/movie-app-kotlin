@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.paularolim.movieapp.ui.screens.HomeScreen
-import com.paularolim.movieapp.ui.screens.MovieScreen
+import com.paularolim.movieapp.ui.screens.movie.MovieScreen
 import kotlinx.coroutines.launch
 
 @Composable
