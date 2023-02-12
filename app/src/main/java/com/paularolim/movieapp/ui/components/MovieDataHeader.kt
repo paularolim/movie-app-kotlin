@@ -26,14 +26,6 @@ import com.paularolim.movieapp.models.Movie
 fun MovieDataHeader(modifier: Modifier = Modifier, movie: Movie) {
     Column(modifier = Modifier
         .fillMaxWidth()
-        .background(
-            Brush.verticalGradient(
-                listOf(
-                    Color(red = 0xFF, green = 0xFF, blue = 0xFF, alpha = 0x0),
-                    MaterialTheme.colors.background
-                ), startY = 0f, endY = 120f
-            )
-        )
         .composed { modifier }) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(

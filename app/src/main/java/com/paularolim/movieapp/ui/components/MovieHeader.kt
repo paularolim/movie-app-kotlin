@@ -24,15 +24,7 @@ fun MovieHeader(openDrawer: () -> Unit) {
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxWidth()
-            .background(
-                Brush.verticalGradient(
-                    listOf(
-                        MaterialTheme.colors.background,
-                        Color(red = 0xFF, green = 0xFF, blue = 0xFF, alpha = 0x0)
-                    )
-                )
-            )
-            .padding(top = 12.dp, end = 24.dp, bottom = 24.dp, start = 24.dp)
+            .padding(horizontal = 24.dp, vertical = 12.dp)
     ) {
         Icon(
             painter = painterResource(R.drawable.ic_baseline_menu_24),

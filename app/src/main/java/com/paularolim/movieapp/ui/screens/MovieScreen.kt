@@ -19,6 +19,7 @@ import com.paularolim.movieapp.viewmodels.MovieViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import com.paularolim.movieapp.models.Movie
+import com.paularolim.movieapp.ui.components.MovieBackdrop
 import com.paularolim.movieapp.viewmodels.MovieViewModelFactory
 
 @Composable
@@ -53,11 +54,7 @@ fun MovieScreen(
                 .background(MaterialTheme.colors.background)
         ) {
             Box(modifier = Modifier) {
-                Image(
-                    painter = rememberAsyncImagePainter(movie.backdropImage),
-                    contentDescription = "Backdrop movie",
-                    contentScale = ContentScale.FillWidth
-                )
+                MovieBackdrop(backdropImage = movie.backdropImage)
                 MovieHeader(openDrawer = { openDrawer() })
             }
             Column(modifier = Modifier.offset(y = -(75.dp))) {
