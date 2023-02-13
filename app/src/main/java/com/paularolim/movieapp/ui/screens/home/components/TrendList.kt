@@ -29,10 +29,14 @@ fun TrendList(
     val loading by viewModel.loading.observeAsState()
     val error by viewModel.error.observeAsState()
 
+    fun tryAgain() {
+        viewModel.fetchTrend()
+    }
+
     if (loading == true) {
-        Text(text = "Loading...")
+        TrendLoading()
     } else if (error?.isNotEmpty() == true && error?.isNotBlank() == true) {
-        Text(text = "Error")
+        TrendError(tryAgain = { tryAgain() })
     } else if (movies?.isNotEmpty() == true) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(

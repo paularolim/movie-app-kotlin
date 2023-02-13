@@ -26,7 +26,7 @@ class TrendViewModel : ViewModel() {
         fetchTrend()
     }
 
-    private fun fetchTrend() {
+    fun fetchTrend() {
         viewModelScope.launch(Dispatchers.IO) {
             _loading.postValue(true)
             _error.postValue("")
