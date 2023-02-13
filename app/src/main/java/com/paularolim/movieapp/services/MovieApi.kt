@@ -1,6 +1,7 @@
 package com.paularolim.movieapp.services
 
 import com.paularolim.movieapp.models.Movie
+import com.paularolim.movieapp.models.TrendResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,4 +12,7 @@ private const val language = "en-US"
 interface MovieApi {
     @GET("movie/{id}?api_key=${apikey}&language=${language}")
     suspend fun getMovie(@Path("id") id: String): Response<Movie>
+
+    @GET("trending/movie/day?api_key=${apikey}")
+    suspend fun getTrend(): Response<TrendResponse>
 }
