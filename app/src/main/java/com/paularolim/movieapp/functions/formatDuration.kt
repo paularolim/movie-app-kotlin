@@ -5,5 +5,8 @@ fun formatDuration(duration: String): String {
         return ""
     }
     val inHours = duration.toInt() / 60.0
-    return if (inHours < 2) "${duration}min" else "${inHours}hrs"
+    if (inHours < 2) return "${duration}min"
+
+    val hoursSpited = inHours.toString().split(".")
+    return "${hoursSpited[0]}hrs e ${hoursSpited[1]}min"
 }
