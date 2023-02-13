@@ -25,12 +25,7 @@ import com.paularolim.movieapp.ui.mocks.movieMock
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MovieDataHeader(modifier: Modifier = Modifier, movie: Movie) {
-    val category1: Category? =
-        if (movie.categories.isNotEmpty() && movie.categories.getOrNull(0) != null) movie.categories[0] else null
-    val category2: Category? =
-        if (movie.categories.isNotEmpty() && movie.categories.getOrNull(1) != null) movie.categories[1] else null
-    val category =
-        if (category1 != null && category2 != null) "${category1.name} / ${category2.name}" else ""
+    val category = movie.categories.take(2).joinToString(" / ") { it.name }
 
     val year = getYearFromDate(movie.releaseDate)
     val duration = formatDuration(movie.duration)
