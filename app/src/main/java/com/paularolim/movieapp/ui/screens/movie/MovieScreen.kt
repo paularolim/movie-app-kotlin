@@ -32,6 +32,7 @@ fun MovieScreen(
     val error by viewModel.error.observeAsState()
 
     val movie = Movie(
+        id = movieResponse?.id ?: "N/A",
         title = movieResponse?.title ?: "N/A",
         backdropImage = "https://image.tmdb.org/t/p/original${movieResponse?.backdropImage}",
         posterImage = "https://image.tmdb.org/t/p/original${movieResponse?.posterImage}",
