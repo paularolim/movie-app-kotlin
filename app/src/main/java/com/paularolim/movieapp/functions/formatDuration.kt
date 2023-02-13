@@ -1,12 +1,15 @@
 package com.paularolim.movieapp.functions
 
-fun formatDuration(duration: String): String {
-    if (duration.isBlank() || duration.isEmpty()) {
-        return ""
-    }
-    val inHours = duration.toInt() / 60.0
-    if (inHours < 2) return "${duration}min"
+import kotlin.math.floor
+import kotlin.math.roundToInt
 
-    val hoursSpited = inHours.toString().split(".")
-    return "${hoursSpited[0]}hrs e ${hoursSpited[1]}min"
+fun formatDuration(duration: String): String {
+    if (duration.isEmpty() || duration.isBlank()) return ""
+
+    val hours = floor(duration.toDouble() / 60.0)
+    val minutes = duration.toDouble() % 60
+
+    val hoursSuffix = if (hours == 1.0) "hr" else "hrs"
+
+    return "${hours.roundToInt()}${hoursSuffix} ${minutes.roundToInt()}min"
 }
