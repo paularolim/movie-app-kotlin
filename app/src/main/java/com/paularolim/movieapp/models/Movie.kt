@@ -3,6 +3,7 @@ package com.paularolim.movieapp.models
 import com.google.gson.annotations.SerializedName
 
 data class Movie(
+    val id: String,
     val title: String,
     @SerializedName("backdrop_path")
     val backdropImage: String,
