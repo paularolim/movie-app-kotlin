@@ -5,8 +5,9 @@ import com.paularolim.movieapp.models.TrendResponse
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.Locale
 
-class RetrofitService {
+class RetrofitService(private val language: String = Locale.getDefault().toLanguageTag()) {
     private val api: MovieApi = Retrofit
         .Builder()
         .baseUrl("https://api.themoviedb.org/3/")
@@ -14,7 +15,7 @@ class RetrofitService {
         .build()
         .create(MovieApi::class.java)
 
-    suspend fun getMovie(id: String): Response<Movie> = api.getMovie(id)
+    suspend fun getMovie(id: String): Response<Movie> = api.getMovie(id, language)
 
-    suspend fun getTrend(): Response<TrendResponse> = api.getTrend()
+    suspend fun getTrend(): Response<TrendResponse> = api.getTrend(language)
 }

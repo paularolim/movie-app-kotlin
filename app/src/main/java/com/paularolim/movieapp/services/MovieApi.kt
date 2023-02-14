@@ -5,14 +5,17 @@ import com.paularolim.movieapp.models.TrendResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 private const val apikey = "xxxxx"
-private const val language = "en-US"
 
 interface MovieApi {
-    @GET("movie/{id}?api_key=${apikey}&language=${language}")
-    suspend fun getMovie(@Path("id") id: String): Response<Movie>
+    @GET("movie/{id}?api_key=${apikey}")
+    suspend fun getMovie(
+        @Path("id") id: String,
+        @Query("language") language: String
+    ): Response<Movie>
 
     @GET("trending/movie/day?api_key=${apikey}")
-    suspend fun getTrend(): Response<TrendResponse>
+    suspend fun getTrend(@Query("language") language: String): Response<TrendResponse>
 }

@@ -1,7 +1,6 @@
 package com.paularolim.movieapp.ui.screens.home.components
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -11,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -18,6 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.paularolim.movieapp.viewmodels.TrendViewModel
 import com.paularolim.movieapp.viewmodels.TrendViewModelFactory
+import com.paularolim.movieapp.R
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -40,7 +41,7 @@ fun TrendList(
     } else if (movies?.isNotEmpty() == true) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(
-                text = "Tendências", modifier = Modifier
+                text = stringResource(id = R.string.tendencies), modifier = Modifier
                     .padding(horizontal = 24.dp)
                     .padding(bottom = 12.dp)
                     .fillMaxWidth()
