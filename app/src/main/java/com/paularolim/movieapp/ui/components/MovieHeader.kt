@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 import com.paularolim.movieapp.R
 
 @Composable
-fun MovieHeader(openDrawer: () -> Unit) {
+fun MovieHeader(goBack: () -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -23,12 +23,12 @@ fun MovieHeader(openDrawer: () -> Unit) {
             .padding(horizontal = 24.dp, vertical = 12.dp)
     ) {
         Icon(
-            painter = painterResource(R.drawable.ic_baseline_menu_24),
+            painter = painterResource(R.drawable.ic_baseline_arrow_back_24),
             contentDescription = "Menu icon",
             modifier = Modifier
                 .size(24.dp)
                 .clickable {
-                    openDrawer()
+                    goBack()
                 }
         )
 
@@ -45,6 +45,5 @@ fun MovieHeader(openDrawer: () -> Unit) {
 @Preview
 @Composable
 private fun MovieHeaderPreview() {
-    fun openDrawer() {}
-    MovieHeader(openDrawer = ::openDrawer)
+    MovieHeader(goBack = {})
 }

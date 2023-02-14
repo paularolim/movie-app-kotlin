@@ -24,7 +24,7 @@ import com.paularolim.movieapp.viewmodels.MovieViewModelFactory
 @Composable
 fun MovieScreen(
     id: String,
-    openDrawer: () -> Unit,
+    goBack: () -> Unit,
     viewModel: MovieViewModel = viewModel(factory = MovieViewModelFactory())
 ) {
     val movieResponse by viewModel.movie.observeAsState()
@@ -62,7 +62,7 @@ fun MovieScreen(
         ) {
             Box(modifier = Modifier) {
                 MovieBackdrop(backdropImage = movie.backdropImage)
-                MovieHeader(openDrawer = { openDrawer() })
+                MovieHeader(goBack = { goBack() })
             }
             Column(modifier = Modifier.offset(y = -(75.dp))) {
                 MovieDataHeader(modifier = Modifier.padding(horizontal = 24.dp), movie = movie)
@@ -75,6 +75,5 @@ fun MovieScreen(
 @Preview
 @Composable
 private fun MovieScreenPreview() {
-    fun openDrawer() {}
-    MovieScreen(id = "315162", openDrawer = ::openDrawer)
+    MovieScreen(id = "315162", goBack = {})
 }

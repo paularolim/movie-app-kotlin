@@ -1,64 +1,40 @@
 package com.paularolim.movieapp.ui.navigation
 
+import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.material.DrawerValue
-import androidx.compose.material.ModalDrawer
-import androidx.compose.material.Surface
-import androidx.compose.material.rememberDrawerState
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.paularolim.movieapp.ui.screens.home.HomeScreen
-import com.paularolim.movieapp.ui.screens.movie.MovieScreen
-import kotlinx.coroutines.launch
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppNavHost() {
     val navController = rememberNavController()
-    val startDestination = "home"
 
-    Surface {
-        val drawerState = rememberDrawerState(DrawerValue.Closed)
-        val scope = rememberCoroutineScope()
+    val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
 
-        val openDrawer = {
-            scope.launch {
-                drawerState.open()
-            }
+    when (navBackStackEntry?.destination?.route) {
+        "home" -> {
+            bottomBarState.value = true
         }
-
-        ModalDrawer(
-            drawerState = drawerState,
-            gesturesEnabled = drawerState.isOpen,
-            drawerContent = {
-                Drawer(onDestinationClicked = { route ->
-                    scope.launch {
-                        drawerState.close()
-                    }
-                    navController.navigate(route) {
-                        popUpTo(navController.graph.startDestinationId) {
-                            inclusive = true
-                        }
-                        launchSingleTop = true
-                    }
-                })
-            }) {
-
-            NavHost(navController = navController, startDestination = startDestination) {
-                composable(route = "home") {
-                    HomeScreen(navController)
-                }
-                composable(route = "movie/{id}") { backStackEntry ->
-                    MovieScreen(
-                        id = backStackEntry.arguments?.getString("id") ?: "",
-                        openDrawer = { openDrawer() }
-                    )
-                }
-            }
+        "movie/{id}" -> {
+            bottomBarState.value = false
         }
+    }
+
+    Scaffold(bottomBar = {
+        BottomNavigation(
+            navController = navController,
+            bottomBarState = bottomBarState
+        )
+    }) {
+        NavigationGraph(navController = navController)
     }
 }
