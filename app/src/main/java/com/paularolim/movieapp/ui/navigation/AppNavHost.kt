@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.paularolim.movieapp.ui.components.Header
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.O)
@@ -18,23 +19,28 @@ fun AppNavHost() {
     val navController = rememberNavController()
 
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
+    val topBarState = rememberSaveable { (mutableStateOf(true)) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     when (navBackStackEntry?.destination?.route) {
         "home" -> {
             bottomBarState.value = true
+            topBarState.value = true
         }
         "movie/{id}" -> {
             bottomBarState.value = false
+            topBarState.value = false
         }
     }
 
-    Scaffold(bottomBar = {
-        BottomNavigation(
-            navController = navController,
-            bottomBarState = bottomBarState
-        )
-    }) {
+    Scaffold(
+        bottomBar = {
+            BottomNavigation(
+                navController = navController, bottomBarState = bottomBarState
+            )
+        },
+        topBar = { Header(topBarState = topBarState) }
+    ) {
         NavigationGraph(navController = navController)
     }
 }

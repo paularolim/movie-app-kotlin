@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.paularolim.movieapp.ui.screens.home.HomeScreen
 import com.paularolim.movieapp.ui.screens.movie.MovieScreen
+import com.paularolim.movieapp.ui.screens.search.SearchScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -21,6 +22,9 @@ fun NavigationGraph(navController: NavHostController) {
                 id = backStackEntry.arguments?.getString("id") ?: "",
                 goBack = { navController.popBackStack() }
             )
+        }
+        composable(BottomNavItem.Search.route) {
+            SearchScreen()
         }
     }
 }

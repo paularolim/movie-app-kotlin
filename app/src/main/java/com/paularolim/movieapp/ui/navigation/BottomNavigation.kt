@@ -24,13 +24,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.paularolim.movieapp.R
 
 sealed class BottomNavItem(val title: String, val icon: Int, val route: String) {
-    object Home : BottomNavItem("Home", R.drawable.ic_baseline_menu_24, "home")
+    object Home : BottomNavItem("Home", R.drawable.ic_baseline_home_24, "home")
+    object Search : BottomNavItem("Search", R.drawable.ic_baseline_search_24, "search")
 }
 
 @SuppressLint("RestrictedApi")
 @Composable
 fun BottomNavigation(navController: NavController, bottomBarState: MutableState<Boolean>) {
-    val items = listOf(BottomNavItem.Home)
+    val items = listOf(BottomNavItem.Home, BottomNavItem.Search)
 
     AnimatedVisibility(visible = bottomBarState.value,
         enter = slideInVertically(initialOffsetY = { it }),
