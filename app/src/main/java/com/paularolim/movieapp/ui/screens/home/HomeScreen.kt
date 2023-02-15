@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.paularolim.movieapp.ui.screens.home.components.HomeHeader
 import com.paularolim.movieapp.ui.screens.home.components.TrendList
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -22,7 +21,6 @@ fun HomeScreen(navController: NavController) {
             .fillMaxSize()
             .background(MaterialTheme.colors.background)
     ) {
-        HomeHeader()
         TrendList(navController = navController)
     }
 }
