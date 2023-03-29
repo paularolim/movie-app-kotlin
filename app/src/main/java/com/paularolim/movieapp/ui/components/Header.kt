@@ -1,5 +1,6 @@
 package com.paularolim.movieapp.ui.components
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -37,7 +38,8 @@ fun Header(topBarState: MutableState<Boolean>) {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
+@Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun HeaderPreview() {
     val topBarState = rememberSaveable { (mutableStateOf(true)) }
