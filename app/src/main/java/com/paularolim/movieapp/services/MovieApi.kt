@@ -19,4 +19,10 @@ interface MovieApi {
 
     @GET("trending/movie/day?api_key=${apikey}")
     suspend fun getTrend(@Query("language") language: String): Response<TrendResponse>
+
+    @GET("search/movie?api_key=${apikey}")
+    suspend fun getSearch(
+        @Query("query") query: String,
+        @Query("language") language: String
+    ): Response<TrendResponse>
 }

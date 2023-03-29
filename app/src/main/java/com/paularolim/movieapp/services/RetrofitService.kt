@@ -18,4 +18,6 @@ class RetrofitService(private val language: String = Locale.getDefault().toLangu
     suspend fun getMovie(id: String): Response<Movie> = api.getMovie(id, language)
 
     suspend fun getTrend(): Response<TrendResponse> = api.getTrend(language)
+
+    suspend fun getSearch(query: String): Response<TrendResponse> = api.getSearch(query, language)
 }
