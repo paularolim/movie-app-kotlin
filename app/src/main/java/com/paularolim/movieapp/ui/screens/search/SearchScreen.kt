@@ -20,8 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.paularolim.movieapp.ui.mocks.movieMock
 import com.paularolim.movieapp.ui.screens.search.components.SearchItem
+import com.paularolim.movieapp.ui.screens.search.components.SearchItemLoading
 import com.paularolim.movieapp.viewmodels.SearchViewModel
 import com.paularolim.movieapp.viewmodels.SearchViewModelFactory
 
@@ -63,7 +63,14 @@ fun SearchScreen(
                 .padding(24.dp)
         )
 
-        if (movies?.isNotEmpty() == true) {
+        if (loading == true) {
+            LazyColumn(contentPadding = PaddingValues(24.dp), content = {
+                itemsIndexed(listOf(1, 2, 3, 4, 5)) { index, _ ->
+                    SearchItemLoading()
+                    if (index < 5) Spacer(modifier = Modifier.height(24.dp))
+                }
+            })
+        } else if (movies?.isNotEmpty() == true) {
             LazyColumn(contentPadding = PaddingValues(24.dp), content = {
                 itemsIndexed(movies!!) { index, item ->
                     SearchItem(

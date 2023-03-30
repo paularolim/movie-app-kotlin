@@ -9,13 +9,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
-import com.paularolim.movieapp.R
 import com.paularolim.movieapp.models.Movie
 import com.paularolim.movieapp.ui.mocks.movieMock
 
@@ -28,7 +26,7 @@ fun SearchItem(movie: Movie, onClickCard: () -> Unit) {
         .clickable { onClickCard() }) {
         Row(
             modifier = Modifier
-                .padding(horizontal = 24.dp, vertical = 12.dp)
+                .padding(12.dp)
         ) {
             Image(
                 painter = rememberAsyncImagePainter(image),
