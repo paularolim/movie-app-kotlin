@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,7 +38,7 @@ fun SearchItem(movie: Movie, onClickCard: () -> Unit) {
                     .clip(RoundedCornerShape(8.dp))
             )
             Spacer(modifier = Modifier.width(12.dp))
-            Column() {
+            Column {
                 Text(text = movie.title, fontSize = 22.sp, fontWeight = FontWeight(700))
                 Text(text = movie.releaseDate, fontSize = 16.sp, fontWeight = FontWeight(200))
                 Spacer(modifier = Modifier.height(8.dp))
@@ -45,7 +46,9 @@ fun SearchItem(movie: Movie, onClickCard: () -> Unit) {
                     text = movie.overview,
                     fontSize = 16.sp,
                     fontWeight = FontWeight(400),
-                    maxLines = 3
+                    maxLines = 3,
+                    softWrap = true,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
