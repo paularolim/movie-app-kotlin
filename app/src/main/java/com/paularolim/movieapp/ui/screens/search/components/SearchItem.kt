@@ -13,22 +13,26 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
 import com.paularolim.movieapp.R
 import com.paularolim.movieapp.models.Movie
 import com.paularolim.movieapp.ui.mocks.movieMock
 
 @Composable
 fun SearchItem(movie: Movie) {
+    val image = "https://image.tmdb.org/t/p/original${movie.posterImage}"
+
     Card(modifier = Modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier
                 .padding(horizontal = 24.dp, vertical = 12.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.sampleposter),
+                painter = rememberAsyncImagePainter(image),
                 contentDescription = "",
                 modifier = Modifier
                     .width(100.dp)
+                    .height(150.dp)
                     .clip(RoundedCornerShape(8.dp))
             )
             Spacer(modifier = Modifier.width(12.dp))
