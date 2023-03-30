@@ -1,6 +1,7 @@
 package com.paularolim.movieapp.ui.screens.search.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -19,10 +20,12 @@ import com.paularolim.movieapp.models.Movie
 import com.paularolim.movieapp.ui.mocks.movieMock
 
 @Composable
-fun SearchItem(movie: Movie) {
+fun SearchItem(movie: Movie, onClickCard: () -> Unit) {
     val image = "https://image.tmdb.org/t/p/original${movie.posterImage}"
 
-    Card(modifier = Modifier.fillMaxWidth()) {
+    Card(modifier = Modifier
+        .fillMaxWidth()
+        .clickable { onClickCard() }) {
         Row(
             modifier = Modifier
                 .padding(horizontal = 24.dp, vertical = 12.dp)
@@ -54,5 +57,5 @@ fun SearchItem(movie: Movie) {
 @Preview
 @Composable
 private fun SearchItemPreview() {
-    SearchItem(movieMock)
+    SearchItem(movie = movieMock, onClickCard = {})
 }

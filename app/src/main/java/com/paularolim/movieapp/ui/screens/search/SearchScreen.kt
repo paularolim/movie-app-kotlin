@@ -18,6 +18,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.paularolim.movieapp.ui.mocks.movieMock
 import com.paularolim.movieapp.ui.screens.search.components.SearchItem
 import com.paularolim.movieapp.viewmodels.SearchViewModel
@@ -25,7 +27,10 @@ import com.paularolim.movieapp.viewmodels.SearchViewModelFactory
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun SearchScreen(viewModel: SearchViewModel = viewModel(factory = SearchViewModelFactory())) {
+fun SearchScreen(
+    viewModel: SearchViewModel = viewModel(factory = SearchViewModelFactory()),
+    navController: NavController
+) {
     val searchText = viewModel.searchText
 
     val movies by viewModel.movies.observeAsState()
@@ -58,10 +63,13 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel(factory = SearchViewMode
                 .padding(24.dp)
         )
 
-        if (movies?.isNotEmpty() == true){
+        if (movies?.isNotEmpty() == true) {
             LazyColumn(contentPadding = PaddingValues(24.dp), content = {
                 itemsIndexed(movies!!) { index, item ->
-                    SearchItem(movie = item)
+                    SearchItem(
+                        movie = item,
+                        onClickCard = { navController.navigate("movie/${item.id}") }
+                    )
                     if (index < movies!!.size) Spacer(modifier = Modifier.height(24.dp))
                 }
             })
@@ -72,5 +80,6 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel(factory = SearchViewMode
 @Preview
 @Composable
 private fun SearchScreenPreview() {
-    SearchScreen()
+    val navController = rememberNavController()
+    SearchScreen(navController = navController)
 }

@@ -24,7 +24,7 @@ fun NavigationGraph(navController: NavHostController) {
             )
         }
         composable(BottomNavItem.Search.route) {
-            SearchScreen()
+            SearchScreen(navController = navController)
         }
     }
 }

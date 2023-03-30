@@ -27,6 +27,10 @@ fun AppNavHost() {
             bottomBarState.value = true
             topBarState.value = true
         }
+        "search" -> {
+            bottomBarState.value = true
+            topBarState.value = true
+        }
         "movie/{id}" -> {
             bottomBarState.value = false
             topBarState.value = false
